@@ -1,11 +1,14 @@
+import { useState, useEffect } from 'react';
 import Contestant from './Contestant.jsx';
 import { contestantStyles } from '../styles';
 import { contestants } from '../assets/data';
 
-function Race() {
+function Race(props) {
+  const [allContestants, setAllContestants] = useState(contestants);
   return (
     <div style={contestantStyles.contestantList}>
-      {contestants.map((contestant) => (
+      {props.currentTime}
+      {allContestants.map((contestant) => (
         <Contestant
           key={contestant.id}
           name={contestant.name}
