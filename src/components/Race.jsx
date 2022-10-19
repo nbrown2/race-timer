@@ -18,8 +18,7 @@ function Race(props) {
 
   return (
     <div style={contestantStyles.contestantList}>
-      {props.currentTime}
-      {allContestants.map((contestant) => (
+      {contestants.map((contestant) => (
         <Contestant
           key={contestant.id}
           name={contestant.name}
