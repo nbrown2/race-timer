@@ -16,8 +16,6 @@ function Race(props) {
     setContestants(newContestantPos);
   }, [props.currentTime]);
 
-function Race(props) {
-  const [allContestants, setAllContestants] = useState(contestants);
   return (
     <div style={contestantStyles.contestantList}>
       {props.currentTime}
