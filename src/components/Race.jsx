@@ -5,9 +5,13 @@ import { contestantData } from '../assets/data';
 
 function Race(props) {
   const [contestants, setContestants] = useState(contestantData);
+
   useEffect(() => {
     let newContestantPos = contestants.map((contestant) => {
-      return { ...contestant, xpos: contestant.xpos + 10 };
+      return {
+        ...contestant,
+        xpos: contestant.xpos + Math.floor(Math.random() * 10),
+      };
     });
     setContestants(newContestantPos);
   }, [props.currentTime]);
