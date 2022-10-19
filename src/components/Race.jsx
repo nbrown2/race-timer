@@ -4,19 +4,17 @@ import { contestantStyles } from '../styles';
 import { contestantData } from '../assets/data';
 
 function Race(props) {
-  const [contestants, setContestants] = useState(contestantData);
+  const [allContestants, setAllContestants] = useState(contestantData);
+
   useEffect(() => {
-    let newContestantPos = contestants.map((contestant) => {
+    let newContestantPos = allContestants.map((contestant) => {
       return { ...contestant, xpos: contestant.xpos + 10 };
     });
-    setContestants(newContestantPos);
+    setAllContestants(newContestantPos);
   }, [props.currentTime]);
 
-function Race(props) {
-  const [allContestants, setAllContestants] = useState(contestants);
   return (
     <div style={contestantStyles.contestantList}>
-      {props.currentTime}
       {allContestants.map((contestant) => (
         <Contestant
           key={contestant.id}
@@ -27,5 +25,4 @@ function Race(props) {
     </div>
   );
 }
-
 export default Race;

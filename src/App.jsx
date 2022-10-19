@@ -1,4 +1,6 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Configuration from './components/Configuration';
 import Timer from './components/Timer';
 import Race from './components/Race';
 import { useState, useEffect } from 'react';
@@ -17,10 +19,20 @@ function App() {
 
   return (
     <>
-      <Background>
-        <Timer currentTime={currentTime} />
-        <Race currentTime={currentTime} />
-      </Background>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Configuration />} />
+          <Route
+            path="/game"
+            element={
+              <Background>
+                <Timer currentTime={currentTime} />
+                <Race currentTime={currentTime} />
+              </Background>
+            }
+          />
+        </Routes>
+      </Router>
     </>
   );
 }
