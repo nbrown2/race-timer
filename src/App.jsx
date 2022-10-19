@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(currentTime - 1);
-    }, 1000);
+    }, 250);
     return () => clearInterval(interval);
   });
 
