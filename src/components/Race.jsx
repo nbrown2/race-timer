@@ -28,5 +28,4 @@ function Race(props) {
     </div>
   );
 }
-
 export default Race;
