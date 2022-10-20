@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './App.css';
-import Configuration from './components/Configuration';
-import Timer from './components/Timer';
-import Race from './components/Race';
-import { useState, useRef } from 'react';
-import Background from './components/Background';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "./App.css";
+import Configuration from "./components/Configuration";
+import Timer from "./components/Timer";
+import Race from "./components/Race";
+import { useState, useRef } from "react";
+import Background from "./components/Background";
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
@@ -17,43 +17,42 @@ function App() {
     }, 1000);
   }
   function stopTimer() {
-    console.log('stopping');
+    console.log("stopping");
     clearInterval(interval.current);
   }
 
   return (
     <>
-      <Router>
+      {/* <Router>
         <Link to="/config">Config Screen</Link> |{' '}
         <Link to="/timer">Timer Screen</Link>
-        <Routes>
-          <Route
-            path="/config"
-            element={
-              <Configuration
-                length={currentTime}
-                setLength={setCurrentTime}
-                numPlayers={numPlayers}
-                setNumPlayers={setNumPlayers}
-                startTimer={startTimer}
-              />
-            }
+        <Routes> */}
+      {/* <Route */}
+
+      {
+        <Configuration
+          length={currentTime}
+          setLength={setCurrentTime}
+          numPlayers={numPlayers}
+          setNumPlayers={setNumPlayers}
+          startTimer={startTimer}
+        />
+      }
+      {/* />
+          <Route */}
+      {
+        <Background>
+          <Timer currentTime={currentTime} />
+          <Race
+            numPlayers={numPlayers}
+            currentTime={currentTime}
+            stopTimer={stopTimer}
           />
-          <Route
-            path="/timer"
-            element={
-              <Background>
-                <Timer currentTime={currentTime} />
-                <Race
-                  numPlayers={numPlayers}
-                  currentTime={currentTime}
-                  stopTimer={stopTimer}
-                />
-              </Background>
-            }
-          />
+        </Background>
+      }
+      {/* />
         </Routes>
-      </Router>
+      </Router> */}
     </>
   );
 }
