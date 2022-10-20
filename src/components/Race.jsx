@@ -1,16 +1,30 @@
-import { useState, useEffect } from 'react';
-import Contestant from './Contestant.jsx';
-import { contestantStyles } from '../styles';
-import { contestantData } from '../assets/data';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import Contestant from "./Contestant.jsx";
+import { contestantStyles } from "../styles";
+import { contestantData } from "../assets/data";
 
 function Race(props) {
   const [contestants, setContestants] = useState(contestantData);
-  let navigateTo = useNavigate();
+
 
   const handleStop = () => {
     props.stopTimer();
-    navigateTo('/config');
+  };
+
+  // This will stop the timer from going below 0 seconds
+  if (props.currentTime < 1) {
+    handleStop();
+  }
+
+  // this function is called on reset button to set the contestants back to 0 xpos
+  const reset = () => {
+    let newContestantPos = contestants.map((contestant) => {
+      return {
+        ...contestant,
+        xpos: 0,
+      };
+    });
+    setContestants(newContestantPos);
   };
 
   useEffect(() => {
@@ -33,6 +47,9 @@ function Race(props) {
         />
       ))}
       <button onClick={handleStop}>Stop the Timer!</button>
+
+      {/* this button triggers the reset function */}
+      <button onClick={reset}>Reset!</button>
     </div>
   );
 }

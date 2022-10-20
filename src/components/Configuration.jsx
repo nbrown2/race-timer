@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Configuration(props) {
-  let navigateTo = useNavigate();
+  // let navigateTo = useNavigate();
   const handleStart = () => {
     props.startTimer();
-    navigateTo('/timer');
+    // navigateTo('/timer');
   };
   return (
     <div>
