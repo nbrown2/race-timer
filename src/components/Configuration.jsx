@@ -8,7 +8,7 @@ function Configuration(props) {
   };
   return (
     <div>
-      <label>Length of Timer (current:{props.length}):</label>
+      <label>Length of Timer:</label>
       <input
         type="text"
         value={props.length}
