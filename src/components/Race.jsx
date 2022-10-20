@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 import Contestant from './Contestant.jsx';
 import { contestantStyles } from '../styles';
 import { contestantData } from '../assets/data';
+import { useNavigate } from 'react-router-dom';
 
 function Race(props) {
   const [contestants, setContestants] = useState(contestantData);
+  let navigateTo = useNavigate();
+
+  const handleStop = () => {
+    props.stopTimer();
+    navigateTo('/config');
+  };
 
   useEffect(() => {
     let newContestantPos = contestants.map((contestant) => {
@@ -25,6 +32,7 @@ function Race(props) {
           xpos={contestant.xpos}
         />
       ))}
+      <button onClick={handleStop}>Stop the Timer!</button>
     </div>
   );
 }

@@ -3,33 +3,52 @@ import './App.css';
 import Configuration from './components/Configuration';
 import Timer from './components/Timer';
 import Race from './components/Race';
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Background from './components/Background';
 
 function App() {
-  let initialTime = 60;
-  const [currentTime, setCurrentTime] = useState(initialTime);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [numPlayers, setNumPlayers] = useState(20);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(currentTime - 1);
-    }, 250);
-    return () => clearInterval(interval);
-  });
+  let interval = useRef();
+  function startTimer() {
+    interval.current = setInterval(() => {
+      setCurrentTime((timer) => timer - 1);
+    }, 1000);
+  }
+  function stopTimer() {
+    console.log('stopping');
+    clearInterval(interval.current);
+  }
 
   return (
     <>
       <Router>
         <Link to="/config">Config Screen</Link> |{' '}
-        <Link to="/game">Game Screen</Link>
+        <Link to="/timer">Timer Screen</Link>
         <Routes>
-          <Route path="/config" element={<Configuration />} />
           <Route
-            path="/game"
+            path="/config"
+            element={
+              <Configuration
+                length={currentTime}
+                setLength={setCurrentTime}
+                numPlayers={numPlayers}
+                setNumPlayers={setNumPlayers}
+                startTimer={startTimer}
+              />
+            }
+          />
+          <Route
+            path="/timer"
             element={
               <Background>
                 <Timer currentTime={currentTime} />
-                <Race currentTime={currentTime} />
+                <Race
+                  numPlayers={numPlayers}
+                  currentTime={currentTime}
+                  stopTimer={stopTimer}
+                />
               </Background>
             }
           />
