@@ -21,14 +21,9 @@ function App() {
     clearInterval(interval.current);
   }
 
+  // Removed all routes so that Configuration and Race components are on the same page
   return (
     <>
-      {/* <Router>
-        <Link to="/config">Config Screen</Link> |{' '}
-        <Link to="/timer">Timer Screen</Link>
-        <Routes> */}
-      {/* <Route */}
-
       {
         <Configuration
           length={currentTime}
@@ -38,8 +33,6 @@ function App() {
           startTimer={startTimer}
         />
       }
-      {/* />
-          <Route */}
       {
         <Background>
           <Timer currentTime={currentTime} />
@@ -50,9 +43,6 @@ function App() {
           />
         </Background>
       }
-      {/* />
-        </Routes>
-      </Router> */}
     </>
   );
 }

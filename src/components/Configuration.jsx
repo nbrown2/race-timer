@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router-dom";
-
 function Configuration(props) {
-  // let navigateTo = useNavigate();
+  // Removed navigation so that Configuration and App are on same page
   const handleStart = () => {
     props.startTimer();
-    // navigateTo('/timer');
   };
+
   return (
     <div>
       <label>Length of Timer:</label>
